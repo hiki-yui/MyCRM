@@ -121,6 +121,8 @@ public class JsonUtils {
                     builder.append("\"" + entry.getKey() + "\":" + o + ",");
                 } else if (oClass == String.class) {
                     builder.append("\"" + entry.getKey() + "\":\"" + o + "\",");
+                } else if (o instanceof Collection){
+                    builder.append("\"" + entry.getKey() + "\":"+ getJson((Collection)o) + ",");
                 } else {
                     builder.append("\"" + entry.getKey() + "\":" + getJson(o) + ",");
                 }

@@ -1,0 +1,305 @@
+/*搜索框样式*/
+/*
+   使用实例
+                <div class="where">
+                    <div class="select-title">
+                        <label for="gender">
+                        性别
+                        </label>
+                    </div>
+                    <input id="gender" class="select" type="text" autocomplete="off"/>
+                </div>
+*/
+.select{
+    display: table-cell!important;
+    height: 34px;
+    border: none;
+    width: 100%;
+    border-radius: 0 2px 2px 0 !important;
+    padding: 6px 0 6px 10px;
+    box-sizing: border-box;
+    font-size: 18px;
+    color: #575767;
+    font-weight: bolder;
+    outline: none;/*获得焦点时没有边框*/
+}
+select.select{
+    padding: 0;
+    text-align: center;
+}
+/*设置下拉列表的样式兼容.select类*/
+option{
+    min-width: 50px;
+    height: 34px;
+}
+.where{
+    display:inline-table;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font: 20px bolder;
+    color: #575767;
+    border: 3px solid #b4bdc3d9;
+    margin: 5px 0 2px 16px;
+    position: relative;
+}
+.select-title{
+    display: table-cell;
+    line-height: 0;
+    border-right: 2.3px solid #929296d1;
+    text-align: center;
+    padding: 7px;
+    background-color: #f1f1e4cf;
+}
+/*展示层样式设计*/
+/*背景*/
+.back{
+    position: relative;
+    top: 0;
+    left: 0;
+    border-radius: 6px;
+    height: 613.7px;
+    width: 100%;
+    background: #e1f7fe;
+    border: solid #bac5cc 3px;
+    overflow: auto;
+}
+/*body的默认设置*/
+body{
+    display: flex;
+}
+/*搜索栏*/
+.inputDiv{
+    border-bottom: solid 2px #bec3c6;
+    margin:5px 20px 10px 20px;
+    padding: 0 0 15px 0;
+    display: flex;
+    position: relative;
+    font-size: 0;
+}
+
+/*数据栏*/
+.base{
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+    height: auto;
+    margin-bottom: 1px;
+    font: 20px bolder;
+    position: relative;
+    -webkit-transition: height 2s;
+    -moz-transition: height 2s;
+    -ms-transition: height 2s;
+    -o-transition: height 2s;
+    transition: height 2s;
+}
+/*按钮相关*/
+/*编辑栏*/
+.edit{
+    width: 100%;
+    padding-left: 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 10px 0 15px 0;
+    position: relative;
+}
+/*使用范例
+<div class="buttonGroup">
+    <button class="ui-button"></button><button class="ui-button"></button><button class="ui-button" style="border-right: none !important"></button>
+    最后一个需要消除多余的分割线,故添加了style="border-right: none !important"
+</div>*/
+/*单个按钮样式*/
+.ui-button{
+    width: 85px;
+    height: 35px;
+    border: none;
+    border-right: 2.3px solid #929296d1;
+    display: inline-block;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+/*去除空白符*/
+.notFont{
+    font-size: 0;
+}
+
+/*数据展示底部的按钮 使用时只需要容器(buttonGroup)和按钮本身带under*/
+.under.ui-button{
+    font-size: 16px;
+}
+
+.under.buttonGroup{
+    margin: 10px 25px 0 25px;
+}
+/*按钮按下时的效果*/
+.ui-button:active{
+    box-shadow: inset 0 0 11px rgb(190, 195, 198);
+}
+
+/*输入域获得焦点时不带框*/
+input{
+    outline: none;
+}
+
+/*分页查询的输入条*/
+input.ui-button{
+    padding: 5px 0 5px 10px;
+}
+
+input.ui-button:active{
+    box-shadow: none;!important;
+}
+
+/*分页按钮样式*/
+.ui-button.under.page {
+    width: 40px;
+}
+/*
+存储多个多个按钮样式
+*/
+.buttonGroup{
+    border-radius: 8px;
+    display:inline-flex;
+    border: 3px solid #b4bdc3d9;
+    position: relative;
+}
+/*数据栏样式模板 和back配套使用*/
+tr{
+    border-bottom: solid 1px #bec3c6;
+}
+/*
+数据展示(表格)
+*/
+.td{
+    height:calc((613.7px * 0.66) / 7);
+    display: table-cell;
+    text-align: center;
+    padding: 15px 0 15px 0;
+    /*宽度在js中动态修正*/
+    width: calc( calc(1274.4px - 44.2px) / 4);
+    -webkit-transition: width 200ms;
+    -moz-transition: width 200ms;
+    -ms-transition: width 200ms;
+    -o-transition: width 200ms;
+    transition: width 200ms;
+}
+/*
+用于重点标注的*
+*/
+sup{
+    color: rgba(211, 0, 0, 0.91);
+}
+/*
+各个模块的顶层样式
+*/
+.top{
+    position: relative;
+    border-bottom: solid 2px #bfc3c6cc;
+    margin: 20px;
+    min-height: 10%;
+}
+
+.bottom{
+    position: relative;
+    min-height: 15%;
+    border-top: solid 2px #bfc3c6cc;
+    margin: 20px;
+}
+/*指定hr的粗度和以上的边框粗度一致*/
+hr{
+    margin-left: 20px;
+    margin-right: 20px;
+    border: solid 1px #bfc3c6cc !important;
+}
+/*设置底部的按钮组的位置*/
+.bottom .buttonGroup{
+    right: 1%;
+    position: absolute;
+    top: 25%;
+}
+/*
+浮动窗口样式设计
+*/
+.floatW{
+    width: 85%;
+    height: 85%;
+    left: 10%;
+    top: -35%;
+    z-index: 6;
+    position: absolute;
+    background-color: rgba(240, 248, 255, 0);
+    -webkit-transition: opacity 350ms ease,background-color 350ms linear,top 350ms linear,visibility 351ms;
+    -moz-transition: opacity 350ms ease,background-color 350ms linear,top 350ms linear,visibility 351ms;
+    -ms-transition: opacity 350ms ease,background-color 350ms linear,top 350ms linear,visibility 351ms;
+    -o-transition: opacity 350ms ease,background-color 350ms linear,top 350ms linear,visibility 351ms;
+    transition: opacity 350ms ease,background-color 350ms linear,top 350ms linear,visibility 351ms;
+    border: solid #bac5cc 3px;
+    border-radius: 6px;
+    overflow: auto;
+    box-shadow: 25px 25px 57px 5px #2e2a2aed;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 0;
+}
+/*浮动窗口的放置容器*/
+.backW{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    visibility: hidden;
+    background-color: rgba(155, 152, 154, 0);
+    z-index: 5;
+    -webkit-transition: visibility 450ms ease,background-color 350ms ease;
+    -moz-transition: visibility 450ms ease,background-color 350ms ease;
+    -ms-transition: visibility 450ms ease,background-color 350ms ease;
+    -o-transition: visibility 450ms ease,background-color 350ms ease;
+    transition: visibility 450ms ease,background-color 350ms ease;
+    border-radius: 6px;
+}
+/*
+用于浮动窗口的输入条设计
+*/
+.floatW .where{
+    min-width: 40%;
+    margin: 15px 0 8px 60px;
+}
+/*
+用于添加的浮动窗口样式设计
+*/
+#addend{
+    border: 3px solid rgba(0, 92, 255, 0.91);
+    border-radius: 5px;
+}
+/*
+用于浮动窗口中,贴合以上where类风格的文本输入域的样式设计
+*/
+.where.message{
+    width: 85%;
+    height: 150px;
+    display: inline-grid;
+}
+/*
+和上一个样式并用(文本输入域)
+*/
+.message textarea{
+    padding: 10px 10px 0 10px;
+    height: 80%;
+    width: 100%;
+    top: 20%;
+    position: absolute;
+    border-top: 3px solid #becbd2;
+    box-sizing: border-box;
+   /*设置文本域不可拖动*/
+    resize:none;
+}
+/*文本输入域专用标题*/
+.where.message .select-title{
+    border: none;
+    height: 20%;
+    padding: 15px 0 0;
+}
+
+
+

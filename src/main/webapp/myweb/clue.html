@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>clue</title>
+    <link rel="stylesheet" href="../my/css/mycss.css" type="text/css"/>
+    <script src="../JQuery/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.css"/>
+    <script src="../bootstrap-3.3.7/dist/js/bootstrap.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css"/>
+    <script type="text/javascript" src="../bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="../bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../my/js/myjs.js" type="text/javascript"></script>
+
+    <script>
+        $(function () {
+            floatComplete();
+            $(".time").datetimepicker({
+                minView: "month",
+                language:  'zh-CN',
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
+            var nextB=$(".floatW .buttonGroup.next");
+            $.each(nextB,function(index,doc){
+                $(doc).on("click",function(){})
+            })
+        })
+    </script>
+</head>
+<body>
+<div id="selectBack" class="back">
+
+    <div id="appendW" class="backW"></div>
+    <div id="append" class="floatW">
+        <div class="top">
+                <h3 style="color: #4e4e4ee0;padding-left: 25px;">线索信息<sub>添加</sub></h3>
+            </div>
+        <div style="position: relative;">
+            <div class="where">
+                <label for="appendName" class="select-title">姓名<sup>*</sup></label>
+                <input id="appendName" class="select" type="text" name="name"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="appendPhone">电话<sup>*</sup></label>
+                <input id="appendPhone" class="select" type="text" name="phone"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="appendEmail">邮箱</label>
+                <input id="appendEmail" class="select" type="text" name="email"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="appendCFrom">所属<sup>*</sup></label>
+                <input id="appendCFrom" class="select" type="text" name="cFrom"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="appendJob">职位<sup>*</sup></label>
+                <input id="appendJob" class="select" type="text" name="job"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="appendAddress">住址</label>
+                <input id="appendAddress" class="select" type="text" name="address"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="appendNextContactTime">下次联系时间</label>
+                <input id="appendNextContactTime" class="select time" type="text" name="address"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="appendState">状态<sup>*</sup></label>
+                <select id="appendState" class="select" name="state">
+                    <option></option>
+                </select>
+            </div>
+            <div class="where message">
+                <label  class="select-title" for="appendIntroduction">
+                    线索概括
+                </label>
+                <textarea id="appendIntroduction" class="select" name="introduction"></textarea>
+            </div>
+            <div class="where message">
+                <label for="appendMessage" class="select-title">
+                    备注
+                </label>
+                <textarea id="appendMessage" class="select" name="message"></textarea>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="buttonGroup">
+                <button id="appendBNot-" class="ui-button">
+                    <div class="glyphicon">
+                        <div class="glyphicon-remove"></div>
+                    </div>
+                    取消
+                </button>
+                <button id="appendBSure" class="ui-button" style="background-color: rgba(0, 92, 255, 0.91);color: #FFFFFF;">
+                    <div class="glyphicon">
+                        <div class="glyphicon-plus"></div>
+                    </div>
+                    添加
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="editW" class="backW"></div>
+    <div id="edit" class="floatW">
+        <div class="top">
+            <h3 style="color: #4e4e4ee0;padding-left: 25px;">活动信息<sub>修改</sub></h3>
+        </div>
+        <div style="position: relative;">
+            <div class="where">
+                <label class="select-title" for="editName">姓名<sup>*</sup></label>
+                <input id="editName" class="select" type="text" name="name"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="editPhone">电话<sup>*</sup></label>
+                <input id="editPhone" class="select" type="text" name="phone"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="editEmail">邮箱</label>
+                <input id="editEmail" class="select" type="text" name="email"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="editCFrom">所属<sup>*</sup></label>
+                <input id="editCFrom" class="select" type="text" name="cFrom"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="editJob">职位<sup>*</sup></label>
+                <input id="editJob" class="select" type="text" name="job"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="editAddress">住址</label>
+                <input id="editAddress" class="select" type="text" name="address"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="editNextContactTime">下次联系时间</label>
+                <input id="editNextContactTime" class="select time" type="text" name="nextContactTime"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="editState">状态<sup>*</sup></label>
+                <select id="editState" class="select" name="state">
+                    <option></option>
+                </select>
+            </div>
+            <div class="where message">
+                <label  class="select-title" for="editIntroduction">
+                    线索概括
+                </label>
+                <textarea id="editIntroduction" class="select" name="introduction"></textarea>
+            </div>
+            <div class="where message">
+                <label for="editMessage" class="select-title">
+                    备注
+                </label>
+                <textarea id="editMessage" class="select" name="message"></textarea>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="buttonGroup">
+                <button id="editBNot-" class="ui-button">
+                    <div class="glyphicon">
+                        <div class="glyphicon-remove"></div>
+                    </div>
+                    取消
+                </button>
+                <button id="editBSure" class="ui-button" style="background-color: rgb(255, 255, 255);">
+                    <div class="glyphicon">
+                        <div class="glyphicon-edit"></div>
+                    </div>
+                    修改
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="top">
+            <h2 style="color: #4e4e4ee0;padding-left: 25px;">线索</h2>
+        </div>
+        <div class="inputDiv">
+            <div id="select" style="padding-left: 9px;">
+                <div class="where">
+                   <label class="select-title" for="selectName">
+                            姓名
+                   </label>
+                    <input id="selectName" class="select" type="text" autocomplete="off" name="name"/>
+                </div>
+                <div class="where">
+                   <label class="select-title" for="selectPhone">
+                            电话
+                   </label>
+                    <input id="selectPhone" class="select" name="phone"/>
+                </div>
+                <div class="where">
+                   <label class="select-title" for="selectEmail">
+                            邮箱
+                   </label>
+                    <input id="selectEmail" class="select" name="email"/>
+                </div>
+                <div class="where">
+                   <label class="select-title" for="selectCFrom">
+                            所属
+                   </label>
+                    <!--时间控件使用实例-->
+                    <input id="selectCFrom" class="  form-control select" type="text" autocomplete="off" name="cFrom"/>
+                </div>
+                <div class="where">
+                   <label class="select-title" for="selectCreator">
+                            创建人
+                   </label>
+                    <input id="selectCreator" class="select" type="text" autocomplete="off" name="creator"/>
+                </div>
+                <div class="where">
+                   <label class="select-title" for="selectJob">
+                            职位
+                   </label>
+                    <input id="selectJob" class=" form-control select" type="text" autocomplete="off" name="job"/>
+                </div>
+                <div class="where">
+                   <label class="select-title" for="selectAddress">
+                            住址
+                   </label>
+                    <input id="selectAddress" class="select" type="text" autocomplete="off" name="address"/>
+                </div>
+                <div class="where">
+                    <button class="ui-button" style="border: none;">查询</button>
+                </div>
+            </div>
+        </div>
+        <div class="base">
+            <div class="edit">
+                <div class="buttonGroup">
+                    <button id="appendB" class="ui-button" style="background-color: rgba(0, 92, 255, 0.91);color: #FFFFFF;">
+                        <div class="glyphicon">
+                            <div class="glyphicon-plus"></div>
+                        </div>
+                        添加
+                    </button>
+                    <button id="deleteB" class="ui-button" style="background-color: rgba(220,38,42,0.91)">
+                        <div class="glyphicon">
+                            <div class="glyphicon-minus"></div>
+                        </div>
+                        删除
+                    </button>
+                    <button id="editB" class="ui-button" style="background-color:#FFFFFF">
+                        <div class="glyphicon">
+                            <div class="glyphicon-edit"></div>
+                        </div>
+                        修改
+                    </button>
+                </div>
+            </div>
+
+            <div style="margin-left: 25px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>
+                                    <div class="td" style="width: 44.2px !important;"><input type="checkbox"/></div>
+                                </td>
+                                <td>
+                                    <div id="name" class="td">姓名</div>
+                                </td>
+                                <td>
+                                    <div id="phone" class="td">电话</div>
+                                </td>
+                                <td>
+                                    <div id="email" class="td">邮箱</div>
+                                </td>
+                                <td>
+                                    <div id="cFrom" class="td">所属</div>
+                                </td>
+                                <td>
+                                    <div id="job" class="td">职位</div>
+                                </td>
+                                <td>
+                                    <div id="address" class="td">住址</div>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+            </div>
+
+            <div class="notFont">
+                <div class="buttonGroup under">
+                    <button id="count" type="button" class="under ui-button" value="条记录"></button>
+                </div>
+                <div class="buttonGroup under">
+                    <input id="pageSize" class="ui-button under" type="text" name="pageSize"/>
+                    <button id="pageSizeB" class="ui-button under">条\页</button>
+                </div>
+                <!--此处需要js动态添加-->
+                <div id="pageList" class="buttonGroup under">
+                    
+                </div>
+                <div class="buttonGroup under">
+                    <input id="pageNum" class="ui-button under" type="text" name="pageNum"/>
+                    <button id="pageNumB" class="ui-button under">跳转至</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

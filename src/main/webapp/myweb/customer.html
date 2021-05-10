@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>customer</title>
+    <link rel="stylesheet" href="../my/css/mycss.css" type="text/css"/>
+    <style>
+
+    </style>
+    <script src="../JQuery/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.css"/>
+    <script src="../bootstrap-3.3.7/dist/js/bootstrap.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="../bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css"/>
+    <script type="text/javascript" src="../bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="../bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../my/js/myjs.js" type="text/javascript"></script>
+
+    <script>
+        $(function () {
+            floatComplete();
+            $(".time").datetimepicker({
+                minView: "month",
+                language:  'zh-CN',
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
+            var nextB=$(".floatW .buttonGroup.next");
+            $.each(nextB,function(index,doc){
+                $(doc).on("click",function(){})
+            })
+        })
+    </script>
+</head>
+<body>
+<div id="selectBack" class="back">
+
+    <div id="appendW" class="backW"></div>
+    <div id="append" class="floatW">
+        <div class="top">
+            <h3 style="color: #4e4e4ee0;padding-left: 25px;">客户信息<sub>添加</sub></h3>
+        </div>
+        <div style="position: relative;">
+            <div class="where">
+                <label for="appendOwner" class="select-title">所有者</label>
+                <input id="appendOwner" class="select" type="text" name="owner" />
+            </div>
+            <div class="where">
+                <label for="appendName" class="select-title">名称<sup>*</sup></label>
+                <input id="appendName" class="select" type="text" name="name"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="appendPhone">座机<sup>*</sup></label>
+                <input id="appendPhone" class="select" type="text" name="phone"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="appendAddress">地址</label>
+                <input id="appendAddress" class="select" type="text" name="address"/>
+            </div>
+            <div class="where message">
+                <label  class="select-title" for="appendMessage">
+                    纪要
+                </label>
+                <textarea id="appendMessage" class="select" name="message"></textarea>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="buttonGroup">
+                <button id="appendBNot-" class="ui-button">
+                    <div class="glyphicon">
+                        <div class="glyphicon-remove"></div>
+                    </div>
+                    取消
+                </button>
+                <button id="appendBSure" class="ui-button" style="background-color: rgba(0, 92, 255, 0.91);color: #FFFFFF;">
+                    <div class="glyphicon">
+                        <div class="glyphicon-plus"></div>
+                    </div>
+                    添加
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="editW" class="backW"></div>
+    <div id="edit" class="floatW">
+        <div class="top">
+            <h3 style="color: #4e4e4ee0;padding-left: 25px;">客户信息<sub>修改</sub></h3>
+        </div>
+        <div style="position: relative;">
+            <div class="where">
+                <label for="editOwner" class="select-title">所有者</label>
+                <input id="editOwner" class="select" type="text" name="owner" />
+            </div>
+            <div class="where">
+                <label class="select-title" for="editName">名称<sup>*</sup></label>
+                <input id="editName" class="select" type="text" name="name"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="editPhone">座机<sup>*</sup></label>
+                <input id="editPhone" class="select" type="text" name="phone"/>
+            </div>
+            <div class="where">
+                <label class="select-title" for="editAddress">地址</label>
+                <input id="editAddress" class="select" type="text" name="address"/>
+            </div>
+            <div class="where message">
+                <label  class="select-title" for="editMessage">
+                    纪要
+                </label>
+                <textarea id="editMessage" class="select" name="message"></textarea>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="buttonGroup">
+                <button id="editBNot-" class="ui-button">
+                    <div class="glyphicon">
+                        <div class="glyphicon-remove"></div>
+                    </div>
+                    取消
+                </button>
+                <button id="editBSure" class="ui-button" style="background-color: rgb(255, 255, 255);">
+                    <div class="glyphicon">
+                        <div class="glyphicon-edit"></div>
+                    </div>
+                    修改
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="top">
+            <h2 style="color: #4e4e4ee0;padding-left: 25px;">客户列表</h2>
+        </div>
+
+        <div  class="inputDiv">
+            <div id="select" style="padding-left: 9px;">
+                <div class="where">
+                    <label class="select-title" for="selectOwner">所有者</label>
+                    <input id="selectOwner" class="select" type="text" name="owner"/>
+                </div>
+                <div class="where">
+                    <label class="select-title" for="selectName">
+                        名称
+                    </label>
+                    <input id="selectName" class="select" type="text" name="name"/>
+                </div>
+                <div class="where">
+                    <label class="select-title" for="selectPhone">
+                        座机
+                    </label>
+                    <input id="selectPhone" class="select" type="text" name="phone"/>
+                </div>
+                <div class="where">
+                    <label class="select-title" for="selectAddress">
+                        地址
+                    </label>
+                    <input id="selectAddress" class="select" type="text" name="address"/>
+                </div>
+                <div class="where">
+                    <button class="ui-button" style="border: none;">查询</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="base">
+            <div class="edit">
+                <div class="buttonGroup">
+                    <button id="appendB" class="ui-button" style="background-color: rgba(0, 92, 255, 0.91);color: #FFFFFF;">
+                        <div class="glyphicon">
+                            <div class="glyphicon-plus"></div>
+                        </div>
+                        添加
+                    </button>
+                    <button id="deleteB" class="ui-button" style="background-color: rgba(220,38,42,0.91)">
+                        <div class="glyphicon">
+                            <div class="glyphicon-minus"></div>
+                        </div>
+                        删除
+                    </button>
+                    <button id="editB" class="ui-button" style="background-color:#FFFFFF">
+                        <div class="glyphicon">
+                            <div class="glyphicon-edit"></div>
+                        </div>
+                        修改
+                    </button>
+                </div>
+            </div>
+            <div style="margin-left: 25px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>
+                                    <div class="td" style="width: 44.2px !important;"><input type="checkbox"/></div>
+                                </td>
+                                <td>
+                                    <div id="owner" class="td">所有者</div>
+                                </td>
+                                <td>
+                                    <div id="name" class="td">姓名</div>
+                                </td>
+                                <td>
+                                    <div id="phone" class="td">座机</div>
+                                </td>
+                                <td>
+                                    <div id="address" class="td">地址</div>
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+            </div>
+
+            <div class="notFont">
+                <div class="buttonGroup under">
+                    <button id="count" type="button" class="under ui-button" value="条记录"></button>
+                </div>
+                <div class="buttonGroup under">
+                    <input id="pageSize" class="ui-button under" type="text" name="pageSize"/>
+                    <button id="pageSizeB" class="ui-button under">条\页</button>
+                </div>
+                <!--此处需要js动态添加-->
+                <div id="pageList" class="buttonGroup under">
+
+                </div>
+                <div class="buttonGroup under">
+                    <input id="pageNum" class="ui-button under" type="text" name="pageNum"/>
+                    <button id="pageNumB" class="ui-button under">跳转至</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

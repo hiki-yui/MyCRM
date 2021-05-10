@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+						
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zs.hiki.settings.dao.T_UsersDao">
+    <select id="selectAll" resultType="com.zs.hiki.settings.domain.Users">
+            SELECT * FROM T_Users;
+    </select>
+</mapper>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板</title>
+    <link rel="stylesheet" href="my/css/mycss.css" type="text/css"/>
+    <script src="JQuery/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="bootstrap-3.3.7/dist/css/bootstrap.css"/>
+    <script src="bootstrap-3.3.7/dist/js/bootstrap.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css"/>
+    <script type="text/javascript" src="bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="my/js/myjs.js" type="text/javascript"></script>
+
+    <script>
+        $(function () {
+            floatComplete();
+            $(".time").datetimepicker({
+                minView: "month",
+                language:  'zh-CN',
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
+            var nextB=$(".floatW .buttonGroup.next");
+            $.each(nextB,function(index,doc){
+                $(doc).on("click",function(){})
+            })
+        })
+        /*
+        * 声明,my.js需要和my.css一起使用
+        * my.css可以单独使用
+        * */
+    </script>
+</head>
+<body>
+<div class="back"><!--长宽基本都是更具该类同态修改或赋值的,必要添加-->
+    <!--my.js浮窗的使用-->
+    <div id="testW" class="backW"></div><!--用于浮窗弹出时的背景,id命名要求:对应浮窗的Id加W
+    一个浮窗对应一个背景,背景可以自己额外添加新的样式,但是背景被点击后会和浮窗一起弹回
+    浮窗的弹出和弹回是绑定到一起的
+    -->
+    <div id="test" class="floatW"><!--浮窗本体(未弹出时是出于隐藏状态),id的命名对应该浮窗内容最终发送的ajax请求地址
+    最终发送的请求地址格式为：title的文本内容，加上该浮窗的id，加上.do结尾,-->
+        <!--————————————————————————————————————————————————————————————————-->
+        <div class="top">
+            <h4>我是顶部样式</h4>
+        </div><!--顶部样式,在浮窗内外的效果不同,类似于标题,可有可无,根据喜好添加-->
+        <div style="position: relative;"><!--有顶部底部就要有中部,中部的容器可以存放相关输入域,中部没有特别要求
+        也可以不使用中部,和顶部底部样式一起使用时要求定位方式时relative
+        -->
+
+            <div class="where">
+                <label class="select-title">我是该输入域的标题</label>
+                <input class="select" placeholder="我是输入域本域"/>
+            </div><!--这一套代表一个输入域,select-title代表的是输入域的标题 使用select类的还可以为select标签-->
+
+            <!--额外插入-->
+            <div class="where">
+                <label class="select-title">我是该输入域的标题</label>
+                <input class="select" placeholder="我是输入域本域"/>
+            </div>
+            <!---->
+            <div class="where"><!--使用select作为输入域时要注意的是,where是会决定整体的长度,并且所有的where会尽量等长
+            如果选项过长会改变整体的长度导致突兀,所以需要注意select输入域的位置
+            -->
+                <label class="select-title">我是下拉列表框的标题</label>
+                <select class="select">
+                    <option>我才没有这么短</option>
+                    <option>长长长长长长长长长长长长长长长长长长长长长长长长长长</option>
+                </select>
+            </div>
+
+            <!--额外插入-->
+            <div class="where">
+                <label class="select-title">我是该输入域的标题</label>
+                <input class="select" placeholder="我是输入域本域"/>
+            </div>
+
+            <!--也可以为textarea标签,但使用textarea需要在使用where类的div额外添加message类-->
+            <div class="message where">
+                <label class="select-title">我是输入域的标题</label>
+                <textarea class="select">我是大型文本输入域</textarea>
+            </div>
+        </div>
+        <div class="bottom"><!--底部样式,也是可有可无,如果内容中有按钮组会自动为按钮组分配位置-->
+            <h4>我是底部样式</h4>
+            <div class="buttonGroup"><!--这是一个按钮容器,可以容下多个按钮-->
+                <button id="testBNot-" class="ui-button"></button><!--这是一个按钮,放在悬浮窗里的按钮还需要放在一个bottom类下的div里,且id命名规范为
+            按钮所在浮窗的id加上B再加上任意四个字符,代表是该浮窗某个功能的按钮(button),如果那四个字符是Sure则该按钮会发送ajax请求
+            如果没有则都会使浮窗弹回(前提是按钮的id为所在浮窗加上任意五个字符,B只是一个规范),想要不使浮窗弹回可以自己再绑定一个事件函数
+            补充:如果不放在bottom类的图层下,则位置需要自己调整
+             ——————后续功能在后续扩展————————
+            -->
+                <button id="testBSure" class="ui-button"></button><!--用于发送请求的按钮-->
+            </div>
+        </div>
+    </div>
+    <div class="inputDiv">
+        <div id="select"><!--这个是用于存放查询条件的容器(id是关键,查询条件的容器的id必须是select)
+    放在该容器内的每一套输入域都会在查询按钮被点击时将储存的value值当作参数发出去
+    每一套输入域中input标签的id命名规范:select加上请求参数名//可以没有id,不影响参数的传递,请求参数名是input标签的name属性
+    没有name的input标签则不会发送请求参数
+    发送的请求参数会以   input标签的name=input标签的value展示在地址栏上,多个请求参数会被用&隔开
+    -->
+            <div class="where">
+                <label class="select-title">我是该输入域的标题</label>
+                <input class="select" placeholder="我是过滤条件的输入域"/>
+            </div>
+            <!--
+    查询按钮必须是该容器内的最后一个元素,并且不能用buttonGroup类作为容器,而是使用where
+    目的是为了不破坏查询条件输入域的布局
+    使用where作为按钮的容器时,容器内只能存在一个按钮
+    -->
+        </div>
+    </div>
+    <div class="base"><!--用于数据展示,使用该类就表明从浮窗发送ajax请求的最终数据会被展示到这里-->
+        <div class="edit"><!--用于存放负责弹出对应浮窗的按钮组-->
+            <!--这里各个按钮的id必须是对应浮窗的id加上一个字符,规范是b-->
+            <div class="buttonGroup">
+                <div id="testB" class="ui-button">
+
+                </div>
+            </div>
+        </div>
+        <div style="margin-left: 25px;"><!--普通的一个图层,存储真正的数据展示,但是也可以不用这个图层,这样的话表格的位置需要自己定义-->
+            <table>
+                <thead><!--表头(数据名)-->
+                    <tr><!--代表表的一行-->
+                        <td><div class="td" style="width: 44.2px !important;"><input type="checkbox"/></div></td><!--这个是多选按钮-->
+                        <!--只有多选按钮（type=checkBox）所在的td类图层需要修改宽度-->
+                        <td><div class="td"></div></td><!--td标签代表一个单元各格子,td类是样式,以上只有-->
+                    </tr>
+                </thead>
+                <tbody></tbody><!--数据(数据值)不用编写内容,因为数据展示是动态完成的-->
+            </table>
+        </div>
+        <div class="notFont"><!--这个类可以不用在意,容器也可以不要-->
+            <div class="buttonGroup under"><!--这个是数据分页相关的按钮，数据分页相关都会带有under类-->
+                <button id="count" type="button" class="under ui-button" value="条记录"></button><!--用于展示数据条数,无特别用处-->
+            </div>
+            <div class="buttonGroup under"><!--固定写法,只有input的类型可以改变-->
+                <input id="pageSize" class="ui-button under" type="text" name="pageSize"/><!--用于修改一页的数据的展示数量-->
+                <button id="pageSizeB" class="ui-button under">条\页</button>
+            </div>
+            <!--此处需要js动态添加-->
+            <div id="pageList" class="buttonGroup under"><!--此处动态添加,固定写法-->
+
+            </div>
+            <div class="buttonGroup under"><!--固定写法,只有input的类型可以改变-->
+                <input id="pageNum" class="ui-button under" type="text" name="pageNum"/>
+                <button id="pageNumB" class="ui-button under">跳转至</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

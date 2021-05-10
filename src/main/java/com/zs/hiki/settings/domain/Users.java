@@ -14,6 +14,7 @@ public class Users {
     private String createBy;//创建人
     private String editTime;//修改时间
     private String editBy;//修改人
+    private Member member;
 
     /*
      *一般验证登录不止需要验证账号的有无,还要验证其他信息例如(是否被封/过期/失效/该客户端ip是否允许访问)
@@ -124,27 +125,51 @@ public class Users {
         this.phone = phone;
     }
 
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Users)) return false;
 
-        Users that = (Users) o;
+        Users users = (Users) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (passWord != null ? !passWord.equals(that.passWord) : that.passWord != null) return false;
-        return phone != null ? phone.equals(that.phone) : that.phone == null;
+        if (id != null ? !id.equals(users.id) : users.id != null) return false;
+        if (loginAct != null ? !loginAct.equals(users.loginAct) : users.loginAct != null) return false;
+        if (userName != null ? !userName.equals(users.userName) : users.userName != null) return false;
+        if (email != null ? !email.equals(users.email) : users.email != null) return false;
+        if (passWord != null ? !passWord.equals(users.passWord) : users.passWord != null) return false;
+        if (phone != null ? !phone.equals(users.phone) : users.phone != null) return false;
+        if (expireTime != null ? !expireTime.equals(users.expireTime) : users.expireTime != null) return false;
+        if (allowIps != null ? !allowIps.equals(users.allowIps) : users.allowIps != null) return false;
+        if (createTime != null ? !createTime.equals(users.createTime) : users.createTime != null) return false;
+        if (createBy != null ? !createBy.equals(users.createBy) : users.createBy != null) return false;
+        if (editTime != null ? !editTime.equals(users.editTime) : users.editTime != null) return false;
+        if (editBy != null ? !editBy.equals(users.editBy) : users.editBy != null) return false;
+        return member != null ? member.equals(users.member) : users.member == null;
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (loginAct != null ? loginAct.hashCode() : 0);
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (passWord != null ? passWord.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (expireTime != null ? expireTime.hashCode() : 0);
+        result = 31 * result + (allowIps != null ? allowIps.hashCode() : 0);
+        result = 31 * result + (createTime != null ? createTime.hashCode() : 0);
+        result = 31 * result + (createBy != null ? createBy.hashCode() : 0);
+        result = 31 * result + (editTime != null ? editTime.hashCode() : 0);
+        result = 31 * result + (editBy != null ? editBy.hashCode() : 0);
+        result = 31 * result + (member != null ? member.hashCode() : 0);
         return result;
     }
 }

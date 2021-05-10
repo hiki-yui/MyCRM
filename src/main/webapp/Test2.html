@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--时间控件使用实例-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="JQuery/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="bootstrap-3.3.7/dist/css/bootstrap.css"/>
+    <script src="bootstrap-3.3.7/dist/js/bootstrap.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css/"/>
+    <script type="text/javascript" src="bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script>
+        $(function () {
+            $(".time").datetimepicker({
+                minView: "month",
+                language:  'zh-CN',
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
+            /*样式类名可以自定义,不一定是time,可以是其他名字,例:*/
+            $(".m").datetimepicker({
+                minView: "month",
+                language:  'zh-CN',
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
+        })
+    </script>
+</head>
+<body>
+    <input type="text" class="time form-control"/>
+    <input type="text" class="m form-control"/>
+</body>
+</html>
