@@ -14,7 +14,7 @@
 
     <script>
         $(function () {
-            floatComplete();
+            allComplete();
             $(".time").datetimepicker({
                 minView: "month",
                 language:  'zh-CN',
@@ -94,6 +94,27 @@
              ——————后续功能在后续扩展————————
             -->
                 <button id="testBSure" class="ui-button"></button><!--用于发送请求的按钮-->
+            </div>
+        </div>
+    </div>
+
+    <div class="top">
+        我是浮窗外的顶部样式
+        <div class="user"><!--用户栏样式,该样式下的ul和li都进行了特殊的操作
+            完成此样式需要使用script的userComplete(),该函数会自动补充动画及过滤效果-->
+            <ul><!--普通的列表-->
+                <li>
+                    <div class="glyphicon">
+                        <div class="glyphicon-user"></div>
+                    </div>
+                    <a>123456</a>
+                </li>
+                <li><a>abdcef</a></li>
+                <li><a>abdcef</a></li>
+                <li><a>abdcef</a></li>
+            </ul>
+            <div class="appearance glyphicon"><!--appearance是下拉按钮样式,在不自己定义下拉按钮时务必使用-->
+                <div class="glyphicon-chevron-down"></div>
             </div>
         </div>
     </div>

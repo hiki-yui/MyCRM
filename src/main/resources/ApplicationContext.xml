@@ -44,7 +44,7 @@
 
     <tx:advice id="myAdvice">
         <tx:attributes>
-            <tx:method name="*"/>
+            <tx:method name="*" rollback-for="java.lang.Exception"/>
         </tx:attributes>
     </tx:advice>
 
@@ -68,6 +68,11 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/myweb/**"/>
+            <bean class="com.zs.hiki.settings.web.HandlerInterceptors.MyWebInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

@@ -14,7 +14,7 @@
 
     <script>
         $(function () {
-            floatComplete();
+            allComplete();
             $(".time").datetimepicker({
                 minView: "month",
                 language:  'zh-CN',
@@ -41,31 +41,31 @@
         <div style="position: relative;">
             <div class="where">
                 <label for="appendName" class="select-title">姓名<sup>*</sup></label>
-                <input id="appendName" class="select" type="text" name="name"/>
+                <input id="appendName" class="select" type="text" name="name" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="appendPhone">电话<sup>*</sup></label>
-                <input id="appendPhone" class="select" type="text" name="phone"/>
+                <input id="appendPhone" class="select" type="text" name="phone" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="appendEmail">邮箱</label>
-                <input id="appendEmail" class="select" type="text" name="email"/>
+                <input id="appendEmail" class="select" type="text" name="email" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="appendCFrom">所属<sup>*</sup></label>
-                <input id="appendCFrom" class="select" type="text" name="cFrom"/>
+                <input id="appendCFrom" class="select" type="text" name="cFrom" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="appendJob">职位<sup>*</sup></label>
-                <input id="appendJob" class="select" type="text" name="job"/>
+                <input id="appendJob" class="select" type="text" name="job" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="appendAddress">住址</label>
-                <input id="appendAddress" class="select" type="text" name="address"/>
+                <input id="appendAddress" class="select" type="text" name="address" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="appendNextContactTime">下次联系时间</label>
-                <input id="appendNextContactTime" class="select time" type="text" name="address"/>
+                <input id="appendNextContactTime" class="select time" type="text" name="address" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="appendState">状态<sup>*</sup></label>
@@ -77,13 +77,13 @@
                 <label  class="select-title" for="appendIntroduction">
                     线索概括
                 </label>
-                <textarea id="appendIntroduction" class="select" name="introduction"></textarea>
+                <textarea id="appendIntroduction" class="select" name="introduction" autocomplete="off"></textarea>
             </div>
             <div class="where message">
                 <label for="appendMessage" class="select-title">
                     备注
                 </label>
-                <textarea id="appendMessage" class="select" name="message"></textarea>
+                <textarea id="appendMessage" class="select" name="message" autocomplete="off"></textarea>
             </div>
         </div>
         <div class="bottom">
@@ -112,31 +112,31 @@
         <div style="position: relative;">
             <div class="where">
                 <label class="select-title" for="editName">姓名<sup>*</sup></label>
-                <input id="editName" class="select" type="text" name="name"/>
+                <input id="editName" class="select" type="text" name="name"  autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="editPhone">电话<sup>*</sup></label>
-                <input id="editPhone" class="select" type="text" name="phone"/>
+                <input id="editPhone" class="select" type="text" name="phone" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="editEmail">邮箱</label>
-                <input id="editEmail" class="select" type="text" name="email"/>
+                <input id="editEmail" class="select" type="text" name="email" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="editCFrom">所属<sup>*</sup></label>
-                <input id="editCFrom" class="select" type="text" name="cFrom"/>
+                <input id="editCFrom" class="select" type="text" name="cFrom" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="editJob">职位<sup>*</sup></label>
-                <input id="editJob" class="select" type="text" name="job"/>
+                <input id="editJob" class="select" type="text" name="job" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="editAddress">住址</label>
-                <input id="editAddress" class="select" type="text" name="address"/>
+                <input id="editAddress" class="select" type="text" name="address" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="editNextContactTime">下次联系时间</label>
-                <input id="editNextContactTime" class="select time" type="text" name="nextContactTime"/>
+                <input id="editNextContactTime" class="select time" type="text" name="nextContactTime" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="editState">状态<sup>*</sup></label>
@@ -148,13 +148,13 @@
                 <label  class="select-title" for="editIntroduction">
                     线索概括
                 </label>
-                <textarea id="editIntroduction" class="select" name="introduction"></textarea>
+                <textarea id="editIntroduction" class="select" name="introduction" autocomplete="off"></textarea>
             </div>
             <div class="where message">
                 <label for="editMessage" class="select-title">
                     备注
                 </label>
-                <textarea id="editMessage" class="select" name="message"></textarea>
+                <textarea id="editMessage" class="select" name="message" autocomplete="off"></textarea>
             </div>
         </div>
         <div class="bottom">
@@ -185,26 +185,26 @@
                    <label class="select-title" for="selectName">
                             姓名
                    </label>
-                    <input id="selectName" class="select" type="text" autocomplete="off" name="name"/>
+                    <input id="selectName" class="select" type="text" name="name" autocomplete="off"/>
                 </div>
                 <div class="where">
                    <label class="select-title" for="selectPhone">
                             电话
                    </label>
-                    <input id="selectPhone" class="select" name="phone"/>
+                    <input id="selectPhone" class="select" name="phone" autocomplete="off"/>
                 </div>
                 <div class="where">
                    <label class="select-title" for="selectEmail">
                             邮箱
                    </label>
-                    <input id="selectEmail" class="select" name="email"/>
+                    <input id="selectEmail" class="select" name="email" type="text"  autocomplete="off"/>
                 </div>
                 <div class="where">
                    <label class="select-title" for="selectCFrom">
                             所属
                    </label>
                     <!--时间控件使用实例-->
-                    <input id="selectCFrom" class="  form-control select" type="text" autocomplete="off" name="cFrom"/>
+                    <input id="selectCFrom" class="  form-control select" type="text"  autocomplete="off" name="cFrom"/>
                 </div>
                 <div class="where">
                    <label class="select-title" for="selectCreator">
@@ -291,7 +291,7 @@
                     <button id="count" type="button" class="under ui-button" value="条记录"></button>
                 </div>
                 <div class="buttonGroup under">
-                    <input id="pageSize" class="ui-button under" type="text" name="pageSize"/>
+                    <input id="pageSize" class="ui-button under" type="text" name="pageSize"  autocomplete="off"/>
                     <button id="pageSizeB" class="ui-button under">条\页</button>
                 </div>
                 <!--此处需要js动态添加-->
@@ -299,8 +299,11 @@
                     
                 </div>
                 <div class="buttonGroup under">
-                    <input id="pageNum" class="ui-button under" type="text" name="pageNum"/>
+                    <input id="pageNum" class="ui-button under" type="text" name="pageNum"  autocomplete="off"/>
                     <button id="pageNumB" class="ui-button under">跳转至</button>
+                </div>
+                <div class="buttonGroup under">
+                    <button id="maxPage" type="button" class="under ui-button" value="条记录"></button>
                 </div>
             </div>
         </div>

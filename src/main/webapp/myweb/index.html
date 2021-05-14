@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SocietiesCRM</title>
+    <link rel="stylesheet" href="../my/css/mycss.css" type="text/css"/>
+    <style>
+        #under{
+            background: #c1f0ff;
+            height: 722px;
+            width: 100%;
+        }
+        #top{
+            width: 100%;
+            height: 10%;
+            position: relative;
+            float: left;
+        }
+        #menu{
+            height: 85%;
+            width: 15%;
+            position: relative;
+            left: 0;
+            top: 0;
+            background: #a6a6a6;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            border: solid 2px #a6a6a6;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: border-box;
+            float: left;
+            overflow: auto;
+        }
+        .ui-menu-item{
+            list-style-type: none;
+            display: block;
+            height:calc( calc(722px * 0.85) / 12);
+            width: 100%;
+        }
+        .item{
+            display: block;
+            width: 100%;
+            height: 100%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            background-color: #FFFFFF;
+            border-bottom: 2px #b5b5b6 solid;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        /*.item:active{
+            background-color: #3d87cc;
+        }*/
+        /*.item:hover{
+            background-color: #a2a2a2;
+        }*/
+        #menu .glyphicon{
+            -webkit-transform: scale(1.2);
+            -moz-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            -o-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+        #showDiv{
+            display: block;
+            width: 85%;
+            height: 85%;
+            float: left;
+            position: relative;
+        }
+        #show{
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: relative;
+            float: left;
+            border: none;
+        }
+        .ui-menu-item a{
+            color: #000;
+        }
+    </style>
+    <link rel="stylesheet" href="../bootstrap-3.3.7/dist/css/bootstrap.min.css" type="text/css">
+    <script src="../JQuery/jquery-3.6.0.js" type="text/javascript"></script>
+    <script src="../JQuery/bootstrap/bootstrap.js" type="text/javascript"></script>
+    <script src="../my/js/myjs.js" type="text/javascript"></script>
+    <script>
+        $(function(){
+            var $item=$(".item");
+            console.log($item);
+            window.open("home.html","show");
+            /*模块选中时变色操作*/
+            $.each($item,function(index,doc){
+                doc.onmouseover=function(){
+                    if (this.style.backgroundColor!=="rgb(61, 135, 204)"){
+                        $(this).css("backgroundColor","#a2a2a2")
+                    }
+                };
+                doc.onmouseleave=function(){
+                    if (this.style.backgroundColor!=="rgb(61, 135, 204)"){
+                        $(this).css("backgroundColor","#FFFFFF")
+                    }
+                };
+                doc.onclick=function(){
+                    var beClick=this;
+                    $.each($item,function(index,doc){
+                        if(doc!==beClick){$(doc).css("backgroundColor","#FFFFFF")}
+                    });
+                    this.style.backgroundColor="#3d87cc";
+                }
+            });
+            $("#home").click();
+            userComplete();
+        })
+    </script>
+</head>
+<body>
+    <div id="under">
+        <div id="top">
+            <div class="user" style="right: 25px; top: 20px;position: absolute;">
+                <ul>
+                    <li>
+                        <div class="glyphicon">
+                            <div class="glyphicon-user"></div>
+                        </div>
+                        lyb
+                    </li>
+                    <li><a href="../login.html" target="show">个人中心</a></li>
+                    <li><a>系统设置</a></li>
+                    <li><a>退出</a></li>
+                </ul>
+                <div class="appearance glyphicon">
+                    <div class="glyphicon-chevron-down"></div>
+                </div>
+            </div>
+        </div>
+        <div id="menu">
+            <ul style="margin: 0;list-style-type: none;width: 100%; height: 100%;padding: 0;">
+                <li class="ui-menu-item">
+                    <!--工作台-->
+                    <a id="home" class="item" href="home.html" target="show">
+                        <span class="glyphicon">
+                            <span class="glyphicon-home">工作台</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="ui-menu-item">
+                    <!--成员-->
+                    <a id="member" class="item" target="show" href="member.html">
+                        <span class="glyphicon">
+                            <span class="glyphicon-user">成员</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="ui-menu-item">
+                    <!--活动-->
+                    <a id="activities" class="item" target="show" href="activities.html">
+                        <span class="glyphicon">
+                            <span class="glyphicon-flag">活动</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="ui-menu-item">
+                    <!--线索-->
+                    <a id="cule" class="item" href="clue.html" target="show">
+                        <span class="glyphicon">
+                            <span class="glyphicon-search">线索</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="ui-menu-item">
+                    <!--联系人-->
+                    <a id="contact" class="item" href="contact.html" target="show">
+                        <span class="glyphicon">
+                            <span class="glyphicon-user">联系人</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="ui-menu-item">
+                    <!--客户-->
+                    <a id="customer" class="item" href="customer.html" target="show">
+                        <span class="glyphicon">
+                            <span class="glyphicon-briefcase">客户</span>
+                        </span>
+                    </a>
+                </li>
+                <li class="ui-menu-item">
+                    <!--工作-->
+                    <span id="work" class="item">
+                        <span class="glyphicon">
+                            <span class="glyphicon-list-alt">工作</span>
+                        </span>
+                    </span>
+                </li>
+                <li class="ui-menu-item">
+                    <!--报告-->
+                    <span id="report" class="item">
+                        <span class="glyphicon">
+                            <span class="glyphicon-file">报告</span>
+                        </span>
+                    </span>
+                </li>
+                <li class="ui-menu-item">
+                    <!--交易-->
+                    <span id="trade" class="item">
+                        <span class="glyphicon">
+                            <span class="glyphicon-jpy">交易</span>
+                        </span>
+                    </span>
+                </li>
+                <li class="ui-menu-item">
+                    <!--售后-->
+                    <span id="soled" class="item">
+                        <span class="glyphicon">
+                            <span class="glyphicon-phone-alt">售后</span>
+                        </span>
+                    </span>
+                </li>
+                <li class="ui-menu-item">
+                    <!--产品-->
+                    <span id="products" class="item">
+                        <span class="glyphicon">
+                            <span class="glyphicon-leaf">产品</span>
+                        </span>
+                    </span>
+                </li>
+                <li class="ui-menu-item">
+                    <!--消息-->
+                    <span id="message" class="item" style="border-bottom: none;">
+                        <span class="glyphicon">
+                            <span class="glyphicon-envelope">消息</span>
+                        </span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div id="showDiv">
+            <iframe id="show" src="home.html" name="show">
+            </iframe>
+        </div>
+    </div>
+</body>
+</html>

@@ -22,6 +22,27 @@ public class Member {
 
     private String editor;//修改人
 
+    private String loginName;
+
+    private String loginPassWord;
+
+    public Member() {
+    }
+
+    public Member(String id, String mName, String gender, String regDate, String mWork, String classroom, String head, String creator, String editor, String loginName, String loginPassWord) {
+        this.id = id;
+        this.mName = mName;
+        this.gender = gender;
+        this.regDate = regDate;
+        this.mWork = mWork;
+        this.classroom = classroom;
+        this.head = head;
+        this.creator = creator;
+        this.editor = editor;
+        this.loginName = loginName;
+        this.loginPassWord = loginPassWord;
+    }
+
     public String getId() {
         return id;
     }
@@ -30,11 +51,11 @@ public class Member {
         this.id = id;
     }
 
-    public String getMName() {
+    public String getmName() {
         return mName;
     }
 
-    public void setMName(String mName) {
+    public void setmName(String mName) {
         this.mName = mName;
     }
 
@@ -54,11 +75,11 @@ public class Member {
         this.regDate = regDate;
     }
 
-    public String getMWork() {
+    public String getmWork() {
         return mWork;
     }
 
-    public void setMWork(String mWork) {
+    public void setmWork(String mWork) {
         this.mWork = mWork;
     }
 
@@ -94,19 +115,20 @@ public class Member {
         this.editor = editor;
     }
 
-    public Member() {
+    public String getLoginName() {
+        return loginName;
     }
 
-    public Member(String id, String mName,String gender, String regDate, String mWork, String classroom, String head, String creator, String editor) {
-        this.id = id;
-        this.mName = mName;
-        this.gender = gender;
-        this.regDate = regDate;
-        this.mWork = mWork;
-        this.classroom = classroom;
-        this.head = head;
-        this.creator = creator;
-        this.editor = editor;
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
+
+    public String getLoginPassWord() {
+        return loginPassWord;
+    }
+
+    public void setLoginPassWord(String loginPassWord) {
+        this.loginPassWord = loginPassWord;
     }
 
     @Override
@@ -124,7 +146,9 @@ public class Member {
         if (classroom != null ? !classroom.equals(member.classroom) : member.classroom != null) return false;
         if (head != null ? !head.equals(member.head) : member.head != null) return false;
         if (creator != null ? !creator.equals(member.creator) : member.creator != null) return false;
-        return editor != null ? editor.equals(member.editor) : member.editor == null;
+        if (editor != null ? !editor.equals(member.editor) : member.editor != null) return false;
+        if (loginName != null ? !loginName.equals(member.loginName) : member.loginName != null) return false;
+        return loginPassWord != null ? loginPassWord.equals(member.loginPassWord) : member.loginPassWord == null;
     }
 
     @Override
@@ -138,6 +162,8 @@ public class Member {
         result = 31 * result + (head != null ? head.hashCode() : 0);
         result = 31 * result + (creator != null ? creator.hashCode() : 0);
         result = 31 * result + (editor != null ? editor.hashCode() : 0);
+        result = 31 * result + (loginName != null ? loginName.hashCode() : 0);
+        result = 31 * result + (loginPassWord != null ? loginPassWord.hashCode() : 0);
         return result;
     }
 
@@ -153,6 +179,8 @@ public class Member {
                 ", head='" + head + '\'' +
                 ", creator='" + creator + '\'' +
                 ", editor='" + editor + '\'' +
+                ", loginName='" + loginName + '\'' +
+                ", loginPassWord='" + loginPassWord + '\'' +
                 '}';
     }
 }

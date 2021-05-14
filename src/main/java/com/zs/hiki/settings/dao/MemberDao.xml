@@ -6,38 +6,88 @@
 
 <mapper namespace="com.zs.hiki.settings.dao.MemberDao">
     <!--SQl标签和语句-->
+
     <insert id="append" parameterType="com.zs.hiki.settings.domain.Member">
         insert into member(id,mName,gender,regDate,mwork,mclassroom,head,creator)
         values (#{id},#{mName},#{gender},#{regDate},#{mWork},#{classroom},#{head},#{creator})
     </insert>
+
     <update id="upDate" parameterType="com.zs.hiki.settings.domain.Member">
         update member set gender=#{gender},mWork=#{mWork},regDate=#{regDate},classroom=#{classroom},
         head=#{head},editof=#{editor}
     </update>
+
     <select id="select" parameterType="com.zs.hiki.settings.domain.Member" resultType="com.zs.hiki.settings.domain.Member">
       select id,mName,gender,regDate,mWork,mclassroom,head,creator,editor from member
       <where>
           <if test="mName != null and mName !='' ">
-              mName=#{mName}
+              mName like "%" #{mName} "%"
           </if>
           <if test="mWork != null and mWork !='' ">
-              and mWork=#{mWork}
+              and mWork like "%" #{mWork} "%"
           </if>
           <if test="head != null and head !='' ">
-              and head=#{head}
+              and head like "%" #{head} "%"
           </if>
           <if test=" regDate != null and regDate !='' ">
-              and regDate=#{regDate}
+              andregDate like "%" #{regDate} "%"
           </if>
           <if test="gender != null and gender !='' ">
-              and gender=#{gender}
+              and gender like "%" #{gender} "%"
           </if>
           <if test="classroom != null and classroom !='' ">
-              and mclassroom=#{classroom}
+              and mclassroom like "%" #{classroom} "%"
           </if>
       </where>
     </select>
+
     <select id="count" resultType="Integer">
         select count(*) from member
     </select>
+
+    <select id="login" parameterType="com.zs.hiki.settings.domain.Member" resultType="com.zs.hiki.settings.domain.Member">
+        select id,mName,gender,regDate,mWork,mclassroom,head,creator,editor,loginPassWord,loginName
+        from member where loginPassWord = #{loginPassWord} and loginName = #{loginName}
+    </select>
+
+    <update id="reg" parameterType="com.zs.hiki.settings.domain.Member" >
+        update member set loginName=#{loginName},loginPassWord=#{loginPassWord} where mName = #{mName}
+    </update>
+
+    <select id="selectNotInLike" resultType="com.zs.hiki.settings.domain.Member">
+        select id,mName,gender,regDate,mWork,mclassroom,head,creator,editor,loginName,loginPassWord from member
+        <where>
+            <if test="mName != null and mName !='' ">
+                mName = #{mName}
+            </if>
+            <if test="mWork != null and mWork !='' ">
+                and mWork = #{mWork}
+            </if>
+            <if test="head != null and head !='' ">
+                and head = #{head}
+            </if>
+            <if test=" regDate != null and regDate !='' ">
+                and regDate like = #{regDate}
+            </if>
+            <if test="gender != null and gender !='' ">
+                and gender = #{gender}
+            </if>
+            <if test="classroom != null and classroom !='' ">
+                and mclassroom = #{classroom}
+            </if>
+            <if test="loginName != null and loginName != '' ">
+                and loginName = #{loginName}
+            </if>
+            <if test="loginPassWord != null and loginPassWord != '' ">
+                and loginPassWord = #{loginPassWord}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteMember">
+        delete from member where id in
+        <foreach collection="array" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

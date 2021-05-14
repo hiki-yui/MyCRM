@@ -3,14 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
-    <servlet>
-      <servlet-name>Ac</servlet-name>
-      <servlet-class>com.zs.hiki.settings.service.ActivitiesService</servlet-class>
-    </servlet>
-    <servlet-mapping>
-      <servlet-name>Ac</servlet-name>
-      <url-pattern>/Ac</url-pattern>
-    </servlet-mapping>
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:ApplicationContext.xml</param-value>
@@ -24,9 +16,16 @@
     </filter>
     <filter-mapping>
         <filter-name>myFilter</filter-name>
+        <url-pattern>/myweb/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>mvcFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>mvcFilter</filter-name>
         <url-pattern>*.do</url-pattern>
     </filter-mapping>
-
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -40,5 +39,7 @@
         <servlet-name>dispatcherServlet</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
-
+    <session-config>
+        <session-timeout>30</session-timeout><!--单位分-->
+    </session-config>
 </web-app>

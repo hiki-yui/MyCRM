@@ -16,7 +16,7 @@
     <script src="../my/js/myjs.js" type="text/javascript"></script>
     <script>
         $(function () {
-            floatComplete();
+            allComplete();
             $(".time").datetimepicker({
                 language:  "zh-CN",
                 format: "yyyy-mm-dd",//显示格式
@@ -41,51 +41,53 @@
             </div>
 
             <div style="position: relative">
-                <div class="where">
-                    <label class="select-title" for="appendName">活动名称<sup>*</sup></label>
-                    <input id="appendName" class="select" type="text" name="name"/>
-                </div>
-                <div class="where">
-                    <label class="select-title" for="appendFromWork">所属工作</label>
-                    <input id="appendFromWork" class="select" type="text" name="fromWork"/>
-                </div>
-                <div class="where">
-                    <label class="select-title" for="appendApplication">活动注册人</label>
-                    <input id="appendApplication" class="select" type="text" name="application"/>
-                </div>
-                <div class="where">
-                    <label class="select-title" for="appendRegDate">活动创建时间<sup>*</sup></label>
-                    <input id="appendRegDate" class="select time" type="text" name="regDate" />
-                </div>
-                <div class="where">
-                    <label class="select-title" for="appendWorkoutDate">活动预计结束时间<sup>*</sup></label>
-                    <input id="appendWorkoutDate" class="select time" type="text" name="workoutDate" />
-                </div>
-                <div class="where">
-                    <label class="select-title" for="appendHead">负责人<sup>*</sup></label>
-                    <select id="appendHead" class="select" name="head">
-                        <option>lyb</option>
-                        <option>lyb</option>
-                    </select>
-                </div>
-                <div class="where">
-                    <label class="select-title" for="appendProgress">活动进程<sup>*</sup></label>
-                    <select id="appendProgress" class="select" name="progress">
-                        <option>lyb</option>
-                        <option>lyb</option>
-                    </select>
-                </div>
-                <div class="where">
-                    <label class="select-title" for="appendCreator">活动创建者<sup>*</sup></label>
-                    <select id="appendCreator" class="select" name="creator">
-                        <option>lyb</option>
-                        <option>lyb</option>
-                    </select>
-                </div>
-                <div class="where message">
-                    <label class="select-title" for="appendMessage">活动信息</label>
-                    <textarea id="appendMessage" class="select" autocomplete="off" placeholder="请填写活动信息" name="message"></textarea>
-                </div>
+                <form>
+                    <div class="where">
+                        <label class="select-title" for="appendName">活动名称<sup>*</sup></label>
+                        <input id="appendName" class="select" type="text" name="name" autocomplete="off"/>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="appendFromWork">所属工作</label>
+                        <input id="appendFromWork" class="select" type="text" name="fromWork" autocomplete="off"/>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="appendApplication">活动注册人</label>
+                        <input id="appendApplication" class="select" type="text" name="application" autocomplete="off"/>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="appendRegDate">活动创建时间<sup>*</sup></label>
+                        <input id="appendRegDate" class="select time" type="text" name="regDate"  autocomplete="off"/>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="appendWorkoutDate">活动预计结束时间<sup>*</sup></label>
+                        <input id="appendWorkoutDate" class="select time" type="text" name="workoutDate"  autocomplete="off"/>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="appendHead">负责人<sup>*</sup></label>
+                        <select id="appendHead" class="select" name="head">
+                            <option>lyb</option>
+                            <option>lyb</option>
+                        </select>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="appendProgress">活动进程<sup>*</sup></label>
+                        <select id="appendProgress" class="select" name="progress">
+                            <option>lyb</option>
+                            <option>lyb</option>
+                        </select>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="appendCreator">活动创建者<sup>*</sup></label>
+                        <select id="appendCreator" class="select" name="creator">
+                            <option>lyb</option>
+                            <option>lyb</option>
+                        </select>
+                    </div>
+                    <div class="where message">
+                        <label class="select-title" for="appendMessage">活动信息</label>
+                        <textarea id="appendMessage" class="select" autocomplete="off" placeholder="请填写活动信息" name="message"></textarea>
+                    </div>
+                </form>
             </div>
 
             <div class="bottom">
@@ -114,53 +116,54 @@
             </div>
 
             <div style="position: relative;">
-                <div class="where">
-                    <label class="select-title" for="editName">活动名称<sup>*</sup></label>
-                    <input id="editName" class="select" type="text" name="name"/>
-                </div>
-                <div class="where">
-                    <label class="select-title" for="editFromWork">所属工作</label>
-                    <input id="editFromWork" class="select" type="text" name="fromWork"/>
-                </div>
-                <div class="where">
-                    <label class="select-title" for="editApplication">活动注册人</label>
-                    <input id="editApplication" class="select" type="text" name="application"/>
-                </div>
-                <div class="where">
-                    <label class="select-title" for="editRegDate">活动创建时间<sup>*</sup></label>
-                    <input id="editRegDate" class="select time" type="text" name="regDate" />
-                </div>
-                <div class="where">
-                    <label class="select-title" for="editWorkoutDate">活动预计结束时间<sup>*</sup></label>
-                    <input id="editWorkoutDate" class="select time" type="text" name="regDate" />
-                </div>
-                <div class="where">
-                    <label class="select-title" for="editHead">负责人<sup>*</sup></label>
-                    <select id="editHead" class="select" name="head">
-                        <option>lyb</option>
-                        <option>lyb</option>
-                    </select>
-                </div>
-                <div class="where">
-                    <label class="select-title" for="editProgress">活动进程<sup>*</sup></label>
-                    <select id="editProgress" class="select" name="progress">
-                        <option>lyb</option>
-                        <option>lyb</option>
-                    </select>
-                </div>
-                <div class="where">
-                    <label class="select-title" for="editCreator">活动创建者<sup>*</sup></label>
-                    <select id="editCreator" class="select" name="creator">
-                        <option>lyb</option>
-                        <option>lyb</option>
-                    </select>
-                </div>
-                <div class="where message">
-                    <label class="select-title" for="editMessage">活动信息</label>
-                    <textarea id="editMessage" class="select" autocomplete="off" placeholder="" name="message"></textarea>
-                </div>
+                <form>
+                    <div class="where">
+                        <label class="select-title" for="editName">活动名称<sup>*</sup></label>
+                        <input id="editName" class="select" type="text" name="name"  autocomplete="off"/>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="editFromWork">所属工作</label>
+                        <input id="editFromWork" class="select" type="text" name="fromWork" autocomplete="off"/>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="editApplication">活动注册人</label>
+                        <input id="editApplication" class="select" type="text" name="application" autocomplete="off"/>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="editRegDate">活动创建时间<sup>*</sup></label>
+                        <input id="editRegDate" class="select time" type="text" name="regDate"  autocomplete="off"/>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="editWorkoutDate">活动预计结束时间<sup>*</sup></label>
+                        <input id="editWorkoutDate" class="select time" type="text" name="regDate" autocomplete="off" />
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="editHead">负责人<sup>*</sup></label>
+                        <select id="editHead" class="select" name="head">
+                            <option>lyb</option>
+                            <option>lyb</option>
+                        </select>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="editProgress">活动进程<sup>*</sup></label>
+                        <select id="editProgress" class="select" name="progress">
+                            <option>lyb</option>
+                            <option>lyb</option>
+                        </select>
+                    </div>
+                    <div class="where">
+                        <label class="select-title" for="editCreator">活动创建者<sup>*</sup></label>
+                        <select id="editCreator" class="select" name="creator">
+                            <option>lyb</option>
+                            <option>lyb</option>
+                        </select>
+                    </div>
+                    <div class="where message">
+                        <label class="select-title" for="editMessage">活动信息</label>
+                        <textarea id="editMessage" class="select" autocomplete="off" placeholder="请输填写动信息" name="message"></textarea>
+                    </div>
+                </form>
             </div>
-
             <div class="bottom">
                 <div class="buttonGroup">
                     <button id="editBNot-" class="ui-button">
@@ -210,7 +213,7 @@
                         <label for="selectWorkOutTime" class="select-title">
                                 预计结束时间
                         </label>
-                        <input id="selectWorkOutTime" class="time form-control select" type="text"  name="workOutTime"/>
+                        <input id="selectWorkOutTime" class="time form-control select" type="text"  name="workOutTime" autocomplete="off"/>
                     </div>
                     <div class="where">
                         <label class="select-title" for="selectProgress">
@@ -278,7 +281,7 @@
                             <thead>
                                 <tr>
                                     <td>
-                                        <div class="td" style="width: 44.2px !important;"><input type="checkbox"/></div>
+                                        <div class="td" style="width: 44.2px !important;"><input type="checkbox" autocomplete="off"/></div>
                                     </td>
                                     <td>
                                         <div id="name"  class="td">活动名称</div>
@@ -314,7 +317,7 @@
                         <button id="count" type="button" class="under ui-button" value="条记录"></button>
                     </div>
                     <div class="buttonGroup under">
-                        <input id="pageSize" class="ui-button under" type="text" name="pageSize"/>
+                        <input id="pageSize" class="ui-button under" type="text" name="pageSize" autocomplete="off"/>
                         <button id="pageSizeB" class="ui-button under">条\页</button>
                     </div>
                     <!--此处需要js动态添加-->
@@ -322,8 +325,11 @@
 
                     </div>
                     <div class="buttonGroup under">
-                        <input id="pageNum" class="ui-button under" type="text" name="pageNum"/>
+                        <input id="pageNum" class="ui-button under" type="text" name="pageNum" autocomplete="off"/>
                         <button id="pageNumB" class="ui-button under">跳转至</button>
+                    </div>
+                    <div class="buttonGroup under">
+                        <button id="maxPage" type="button" class="under ui-button" value="条记录" ></button>
                     </div>
                 </div>
             </div>

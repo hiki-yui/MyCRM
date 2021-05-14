@@ -17,7 +17,7 @@
 
     <script>
         $(function () {
-            floatComplete();
+            allComplete();
             $(".time").datetimepicker({
                 minView: "month",
                 language:  'zh-CN',
@@ -44,25 +44,25 @@
         <div style="position: relative;">
             <div class="where">
                 <label for="appendOwner" class="select-title">所有者</label>
-                <input id="appendOwner" class="select" type="text" name="owner" />
+                <input id="appendOwner" class="select" type="text" name="owner"  autocomplete="off"/>
             </div>
             <div class="where">
                 <label for="appendName" class="select-title">名称<sup>*</sup></label>
-                <input id="appendName" class="select" type="text" name="name"/>
+                <input id="appendName" class="select" type="text" name="name" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="appendPhone">座机<sup>*</sup></label>
-                <input id="appendPhone" class="select" type="text" name="phone"/>
+                <input id="appendPhone" class="select" type="text" name="phone" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="appendAddress">地址</label>
-                <input id="appendAddress" class="select" type="text" name="address"/>
+                <input id="appendAddress" class="select" type="text" name="address" autocomplete="off"/>
             </div>
             <div class="where message">
                 <label  class="select-title" for="appendMessage">
                     纪要
                 </label>
-                <textarea id="appendMessage" class="select" name="message"></textarea>
+                <textarea id="appendMessage" class="select" name="message" autocomplete="off"></textarea>
             </div>
         </div>
         <div class="bottom">
@@ -91,25 +91,25 @@
         <div style="position: relative;">
             <div class="where">
                 <label for="editOwner" class="select-title">所有者</label>
-                <input id="editOwner" class="select" type="text" name="owner" />
+                <input id="editOwner" class="select" type="text" name="owner" autocomplete="off" />
             </div>
             <div class="where">
                 <label class="select-title" for="editName">名称<sup>*</sup></label>
-                <input id="editName" class="select" type="text" name="name"/>
+                <input id="editName" class="select" type="text" name="name" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="editPhone">座机<sup>*</sup></label>
-                <input id="editPhone" class="select" type="text" name="phone"/>
+                <input id="editPhone" class="select" type="text" name="phone" autocomplete="off"/>
             </div>
             <div class="where">
                 <label class="select-title" for="editAddress">地址</label>
-                <input id="editAddress" class="select" type="text" name="address"/>
+                <input id="editAddress" class="select" type="text" name="address" autocomplete="off"/>
             </div>
             <div class="where message">
                 <label  class="select-title" for="editMessage">
                     纪要
                 </label>
-                <textarea id="editMessage" class="select" name="message"></textarea>
+                <textarea id="editMessage" class="select" name="message" autocomplete="off"></textarea>
             </div>
         </div>
         <div class="bottom">
@@ -139,25 +139,25 @@
             <div id="select" style="padding-left: 9px;">
                 <div class="where">
                     <label class="select-title" for="selectOwner">所有者</label>
-                    <input id="selectOwner" class="select" type="text" name="owner"/>
+                    <input id="selectOwner" class="select" type="text" name="owner" autocomplete="off"/>
                 </div>
                 <div class="where">
                     <label class="select-title" for="selectName">
                         名称
                     </label>
-                    <input id="selectName" class="select" type="text" name="name"/>
+                    <input id="selectName" class="select" type="text" name="name" autocomplete="off"/>
                 </div>
                 <div class="where">
-                    <label class="select-title" for="selectPhone">
+                    <label class="select-title" for="selectPhone" >
                         座机
                     </label>
-                    <input id="selectPhone" class="select" type="text" name="phone"/>
+                    <input id="selectPhone" class="select" type="text" name="phone" autocomplete="off"/>
                 </div>
                 <div class="where">
                     <label class="select-title" for="selectAddress">
                         地址
                     </label>
-                    <input id="selectAddress" class="select" type="text" name="address"/>
+                    <input id="selectAddress" class="select" type="text" name="address" autocomplete="off"/>
                 </div>
                 <div class="where">
                     <button class="ui-button" style="border: none;">查询</button>
@@ -220,7 +220,7 @@
                     <button id="count" type="button" class="under ui-button" value="条记录"></button>
                 </div>
                 <div class="buttonGroup under">
-                    <input id="pageSize" class="ui-button under" type="text" name="pageSize"/>
+                    <input id="pageSize" class="ui-button under" type="text" name="pageSize" autocomplete="off"/>
                     <button id="pageSizeB" class="ui-button under">条\页</button>
                 </div>
                 <!--此处需要js动态添加-->
@@ -228,8 +228,11 @@
 
                 </div>
                 <div class="buttonGroup under">
-                    <input id="pageNum" class="ui-button under" type="text" name="pageNum"/>
+                    <input id="pageNum" class="ui-button under" type="text" name="pageNum" autocomplete="off"/>
                     <button id="pageNumB" class="ui-button under">跳转至</button>
+                </div>
+                <div class="buttonGroup under">
+                    <button id="maxPage" type="button" class="under ui-button" value="条记录"></button>
                 </div>
             </div>
         </div>

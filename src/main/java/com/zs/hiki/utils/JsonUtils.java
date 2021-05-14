@@ -28,7 +28,7 @@ public class JsonUtils {
                     Class fType=f.getType();
                     //判断,如果属性是基本数据类型及其封装类,直接进行赋值的字符串拼接操作
                     if(fType==Boolean.class||fType.isPrimitive()||fType.getSuperclass()==java.lang.Number.class){
-                        builder.append("\""+f.getName()+"\":"+f.get(o)+",");
+                        builder.append("\"").append(f.getName()).append("\":").append(f.get(o)).append(",");
                     }else if(fType==String.class){
                         //如果是String类型,直接拼接,带双引号
                         builder.append("\""+f.getName()+"\":\""+f.get(o)+"\",");
@@ -75,20 +75,21 @@ public class JsonUtils {
         StringBuilder builder=new StringBuilder(80);
         builder.append("var "+name+"=");
         builder.append("[");
-        //获取迭代器
         //遍历集合
-        for (Object o : l) {
-            if (o instanceof Map) {       //如果对象为map
-                Map map = (Map) o;
-                builder.append(getJson(map) + ",");
-            } else if (o != null) {      //如果元素不为null,则获取该元素中对应的属性值
-                builder.append(getJson(o));
-                builder.append(",");
+        if (l.size()!=0) {
+            for (Object o : l) {
+                if (o instanceof Map) {       //如果对象为map
+                    Map map = (Map) o;
+                    builder.append(getJson(map) + ",");
+                } else if (o != null) {      //如果元素不为null,则获取该元素中对应的属性值
+                    builder.append(getJson(o));
+                    builder.append(",");
+                }
             }
+            //删除多余逗号
+            builder.deleteCharAt(builder.lastIndexOf(","));
         }
         builder.append("]");
-        //删除多余逗号
-        builder.deleteCharAt(builder.lastIndexOf(","));
         return builder.toString();
     }
 

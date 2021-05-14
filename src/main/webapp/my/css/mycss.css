@@ -40,7 +40,7 @@ option{
     font: 20px bolder;
     color: #575767;
     border: 3px solid #b4bdc3d9;
-    margin: 5px 0 2px 16px;
+    margin: 6px 0 6px 16px;
     position: relative;
 }
 .select-title{
@@ -300,6 +300,70 @@ hr{
     height: 20%;
     padding: 15px 0 0;
 }
+
+/*——————————————————————————————————————————————————*/
+
+/*用户栏*/
+.user{
+    background-color: #e1f7fe;
+    min-width: 150px;
+    height: 30px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    display: inline-flex;
+    position: relative;
+    border: #606262 solid 2px;
+    box-sizing: content-box;
+    box-shadow:-5px 5px 15px -5px black;
+}
+.user li .glyphicon{
+    margin-right: 10px;
+}
+.appearance{
+    position: absolute;
+    text-align: center;
+    right: 0;
+}
+.appearance div{
+    line-height: 30px;
+}
+.user ul{
+    list-style-type: none;
+    min-width:124px;
+    padding: 0;
+    margin: 0 6px 0 6px;
+    height: 30px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    z-index: 1;
+
+}
+.user li{
+    margin-top: 0;
+    text-align: center;
+    line-height: 30px;
+    background-color: #e1f7fe;
+    height: 30px;
+    border-bottom: 2px solid #606262;
+    box-sizing: content-box;
+    /*margin-bottom: 2px;*/
+}
+.user li:not(:first-child){
+    margin-top: -30px;
+    visibility: hidden;
+    height: 30px;
+    opacity: 1;
+    -webkit-transform: rotateX(180deg);
+    -moz-transform: rotateX(180deg);
+    -ms-transform: rotateX(180deg);
+    -o-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+}
+
+/*——————————————————————————————————————————————————*/
+
 
 
 

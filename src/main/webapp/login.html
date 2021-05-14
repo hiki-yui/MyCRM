@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <script src="JQuery/jquery-3.6.0.js" type="text/javascript"></script>
+    <script src="JQuery/bootstrap/bootstrap.js" type="text/javascript"></script>
+    <script>
+        if (window.top!==window.self){
+            window.top.location=window.self.location;
+        }
+    </script>
+    <link rel="stylesheet" href="bootstrap-3.3.7/dist/css/bootstrap.min.css" type="text/css">
+    <style>
+        .allBack{
+            height: 374px;
+            width: 370px;
+            position: absolute;
+            right: 10%;
+            overflow: hidden;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px;
+        }
+        .mezzanine{/*夹层*/
+            width: 100%;
+            /*background-color: #79ed72;*/
+            height: 10%;
+            display: block;
+            text-align: center;
+            line-height: 40px;
+            z-index:2;
+            position: relative;
+            /*border-bottom: 2px solid #f0d99e;*/
+            -webkit-box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            box-sizing: border-box;
+            transform-style: preserve-3d;
+            background: #a9d705;
+        }
+        .allBack .mezzanine:first-child{
+            margin-top: 0!important;
+        }
+        .allBack .temp{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .temp .top h4{
+            align-content: center;
+            line-height: inherit;
+        }
+        #login{
+            background-color: #eddddd;
+            z-index: 1;
+        }
+        #reg{
+            background-color: #eddddd;
+            z-index: 3;
+            animation:drop 2s cubic-bezier(.33,-0.41,.06,1.98) both paused;
+        }
+        @keyframes drop {
+            0%{
+                margin-top: -374px;
+            }
+            50%{
+                margin-top: 0;
+            }
+            70%{
+                margin-top: -138px;
+            }
+            80%{
+                margin-top: 0;
+            }
+            85%{
+                margin-top: -44px;
+            }
+            88%{
+                margin-top: 0;
+            }
+            93%{
+                margin-top: -15px;
+            }
+            95%{
+                margin-top: 0;
+            }
+            96%{
+                margin-top: -6px;
+            }
+            97%{
+                margin-top: 0;
+            }
+            98%{
+                margin-top: -1px;
+            }
+            100%{
+                margin-top: 0;
+            }
+        }
+        @keyframes up{
+            from {
+                margin-top: 0;
+            }
+            to{
+                margin-top: -374px;
+            }
+        }
+        .errorMessage{
+            margin: -6px 0 -6px 0;
+            font-size: 14px;
+            font-weight: bolder;
+            display: block;
+            color: #e22505;
+        }
+    </style>
+    <script src="my/js/myjs.js" type="text/javascript"></script>
+    <link href="my/css/mycss.css" rel="stylesheet" type="text/css">
+    <script>
+
+        //切换至注册模块
+        function changeReg(){
+            $.each($("#login select"),function(index,doc){
+                $(doc).css("color","#575767")
+            });
+            $("#login .errorMessage").text("");//清空提示内容
+            var $reg = $("#reg");//注册模块元素
+            var waitTime = isVisible($(".mezzanine"));//使夹层显示
+            $reg.css("animation","drop 2s cubic-bezier(.33,-0.41,.06,1.98) both paused");//切换注册模块的动画效果 drop(降落)
+            setTimeout(function () {
+                $reg.css("animationPlayState"," running");//运行动画
+                $("#loginReset").click();//清空本模块的内容
+            },waitTime*1000+500);/*设置定时器(在夹层动画效果结束后运行动画)*/
+            $(this).attr("disabled",true);//设置切换按钮只读,确保动画不会被玩坏
+        }
+
+        //切换至登录模块
+        function changeLogin(){
+            var $reg = $("#reg");//注册模块元素
+            $("#reg .errorMessage").text("");
+            setTimeout(function () {
+                isHidden($(".mezzanine"));
+                $("#regReset").click();//清空本模块的内容
+            },700);//设置定时器,在注册模块运行到一定时间后,将夹层收起
+            $reg.css("animation","up 2s cubic-bezier(.33,-0.41,.06,1.98) both paused");//切换注册模块的动画效果,up(收起)
+            $reg.css("animationPlayState"," running");//运行动画
+            $(this).attr("disabled",true);//设置切换按钮只读,确保动画不会被玩坏
+        }
+
+        /*登录函数*/
+        function login(){
+            var canSend=true;
+            var data = "{";//拼接json字符串
+            var $inputs=$("#login .select");//获取登录模块
+            $.each($inputs,function (index,doc) {
+
+                /*—————————————————*/
+                if (doc.value===""){//如果表单中没有输入字符
+                    canSend=false;//取消发送ajax
+                    doc.style.color="red";//提示变红(更显眼了)
+                    /*设置定时器*/
+                    /*————————————————*/
+                    setTimeout(function(){
+                        $(doc).focus();
+                        $(doc).blur();
+                    },1500);//设置闪烁提示
+                    /*————————————————*/
+                    if(doc.onfocus!==undefined){
+                        doc.onfocus=function () {this.style.color="#575767";}
+                    }//获得焦点时变回原来的颜色
+                    if (doc.onblur===undefined){
+                        doc.onblur=function () {if (this.value==="") {doc.style.color="red";}}
+                    }//如果还是没有输入字符再次变红
+                }
+                /*————————————————*/
+
+                if (doc.name!==""){data+="\""+$(doc).attr("name")+"\":\""+$(doc).val()+"\",";}//拼接json
+            });
+            data+="}";
+            data=data.replace(/,}$/,"}");//如果有多余逗号就删除
+            if (canSend){
+                var jsonData=JSON.parse(data);
+                console.log(jsonData);
+                $.ajax({url:"myweb/login.do", data:jsonData,type:"post",success:function (data) {
+                        console.log(data);
+                        if ( data["success"]){
+                            window.location.href="myweb/index.html";
+                        }else {
+                            var errorMessage=data["message"];
+                            $("#loginErrorMessage").text(errorMessage);
+                        }
+                    },dataType:"json"})
+            }
+        }
+        /*注册函数*/
+        function reg(){
+            var data = "{";
+            var $inputs = $("#reg .select");
+            $.each($inputs,function (index,doc) {
+                if (doc.name!==""){data += "\""+doc.name+"\":\""+doc.value+"\",";}
+            });
+            data+="}";
+            console.log(data.charAt(data.lastIndexOf(",")+1));
+            data=data.replace(/,}$/,"}");
+            //检测
+            console.log(data);
+            $.ajax({url:"myweb/reg.do",data:JSON.parse(data),dataType:"json",success:function(data){
+                    if (data["success"]){
+                        window.open("myweb/index.html","_self");
+                    }else{
+                        var errorMessage=data["message"];
+                        $("#underRegPassWordSure").text(errorMessage);
+                    }
+                },type:"post"})
+        }
+
+        memberNameFinish=false;
+        loginNameFinish=false;//代表用户名是否完成
+        passWordFinish=false;//代表密码是否完成
+
+        function checkPassWord(doc){
+            if (doc!==undefined&&doc!==null){
+                var $this = doc;
+                var $underRegPassWord=$("#underRegPassWord");
+                var test=/^([a-zA-Z0-9\-_\u4e00-\u9fa5]{6,16})$/;
+                if ($this.value===""){
+                    $underRegPassWord.text("密码不能为空");
+                    passWordFinish=false;
+                }else if($this.value.length<6||$this.value.length>16){
+                    $underRegPassWord.text("密码密码必须由6-16位的数字和字母组成");
+                    passWordFinish=false;
+                }else if (!test.test($this.value)){
+                    $underRegPassWord.text("密码包含非法字符");
+                    passWordFinish=false;
+                }else{
+                    $underRegPassWord.text("");
+                    var $regPassWordSure=$("#regPassWordSure");
+                    if ($regPassWordSure.val()!==""){
+                        confirmPassWord();
+                    }
+                }
+                openOrCloseRegB();
+            }
+        }
+
+        function confirmPassWord(){
+            var $regPassWord=$("#regPassWord");
+            var $regPassWordSure=$("#regPassWordSure");
+            if($regPassWord.val()!==""){
+                if ($regPassWord.val()!==$regPassWordSure.val()){
+                    $("#underRegPassWordSure").text("密码不正确");
+                    passWordFinish=false;
+                }else{
+                    $("#underRegPassWordSure").text("");
+                    passWordFinish=true;
+                }
+            }
+            openOrCloseRegB();
+            console.log(passWordFinish+" "+memberNameFinish+" "+loginNameFinish)
+        }
+
+        function openOrCloseRegB(){
+            if (passWordFinish&&loginNameFinish&&memberNameFinish){
+                console.log($("#regB"));
+                $("#regB").attr("disabled",false);
+            } else{
+                $("#regB").attr("disabled",true);
+            }
+        }
+
+        /*————————————————————————————————————————————————————————————*/
+
+        $(function () {//页面加载完毕后要做的事
+            var $allInput = $(" input");
+            $allInput.attr("autocomplete","off");
+            var $reg = $("#reg");//获取注册模块
+            centerY("back");//调用垂直居中的函数,使id为back的元素(根基)垂直居中
+            buttonGroupComplete();//跳转按钮主键
+            var $changeL=$("#changeLogin");
+            var $changeR=$("#changeReg");//两个切换的按钮
+            /*绑定事件*/
+            $changeL.click(changeLogin);
+            $changeR.click(changeReg);
+            changeLogin();//在页面加载完毕时,显示登录模块
+            $reg.on("animationend",function () {//开放按钮
+                $changeL.attr("disabled",false);
+                $changeR.attr("disabled",false);
+            });
+          /*  var $span=$(".allBack span");
+            $.each($span,function (index,doc) {
+                var $doc=$(doc);
+                $doc.css("background","url(\"img/IMG_20210429_113018_wps图片_wps图片.jpg\")" +
+                    " content-box content-box");
+                $doc.css("backgroundPositionY","-"+($doc.height()*index+75)+"px");
+                $doc.css("backgroundPositionX","-77px")
+            });*//*夹层图片*/
+            var $loginB = $("#loginB");
+            $loginB.click(login);
+            var $regB = $("#regB");
+            $regB.click(reg);//点击注册按钮发送Ajax请求
+
+            var $regPassWord=$("#regPassWord");
+            var $regPassWordSure=$("#regPassWordSure");
+            var $regLoginName=$("#regName");
+            var $memberName=$("#mName");
+
+            $regPassWord.blur(function(){checkPassWord(this)});
+            $regPassWord.focus(function () {
+                $("#underRegPassWord").text("");
+            });
+            $regPassWord.keyup(function(){
+                if ($regPassWordSure.val()!==""){checkPassWord(this)}
+            });
+
+
+            $regPassWordSure.blur(confirmPassWord);//失去焦点检查确认信息
+            $regPassWordSure.focus(function(){//获得焦点清空提示内容
+                $("#underRegPassWordSure").text("");
+            });
+            $regPassWordSure.keyup(function () {
+                if ($regPassWordSure.val()!==""){confirmPassWord()}
+            });
+
+            $regLoginName.blur(function () {
+                if (this.value!==""){
+                    $.ajax({url:"myweb/regCheckLoginName.do",dataType:"json",data:{loginName:this.value},success:function (data) {
+                            if ( data["hadLoginName"]){
+                                $("#underRegName").text("该账号已存在");
+                                loginNameFinish=false;
+                            }else{
+                                $("#underRegName").text("");
+                                loginNameFinish=true;
+                            }
+                            openOrCloseRegB();
+                        },type:"post"})
+                }else{
+                    $("#underRegName").text("账号不能为空");
+                }
+            });
+
+            $memberName.blur(function () {
+                if(this.value!==null){
+                    $.ajax({url:"myweb/regCheckMember.do",dataType:"json",data:{mName:this.value},success:function (data) {
+                            if (data["hadUser"]){
+                                if (data["hadTaken"]) {
+                                    $("#underMemberName").text("该成员已有账号");
+                                    memberNameFinish=false;
+                                }else{
+                                    $("#underMemberName").text("");
+                                    memberNameFinish=true;
+                                }
+                            }else{
+                                $("#underMemberName").text("你不是本团成员,请联系社长添加你的个人信息");
+                                memberNameFinish=false;
+                            }
+                            openOrCloseRegB();
+                        },type:"post"})
+                }else{
+                    $("#underMemberNameName").text("真实姓名不能为空");
+                }
+            });
+
+            openOrCloseRegB();
+        });
+
+    </script>
+</head>
+<body>
+<div id="back" class="allBack">
+    <span class="mezzanine"></span>
+    <span class="mezzanine"></span>
+    <span class="mezzanine"></span>
+    <span class="mezzanine"></span>
+    <span class="mezzanine"></span>
+    <span class="mezzanine"></span>
+    <span class="mezzanine"></span>
+    <span class="mezzanine"></span>
+    <span class="mezzanine"></span>
+    <span class="mezzanine"></span>
+
+    <div id="login" class="temp">
+        <form>
+            <div class="top"><h3>登录</h3></div>
+            <span id="loginErrorMessage" class="errorMessage"></span>
+            <div  class="where">
+                <label class="select-title" for="loginName">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</label>
+                <input id="loginName" class="select" name="loginName" type="text" autocomplete="off" placeholder="请输入你的账号"/>
+            </div>
+            <div  class="where">
+                <label class="select-title" for="loginPassWord">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                <input id="loginPassWord" class="select" name="loginPassWord" type="password" autocomplete="off" placeholder="请输入你的密码"/>
+            </div>
+            <div class="bottom">
+                <div class="buttonGroup">
+                    <button id="loginB" class="ui-button" type="button">登录</button>
+                </div>
+                <a id="changeReg">没有账号?<sub>点这里</sub></a>
+            </div>
+            <input id="loginReset" type="reset" style="visibility: hidden"/>
+        </form>
+    </div>
+
+    <div id="reg" class="temp">
+        <div class="top"><h3>注册</h3></div>
+        <form>
+            <div  class="where">
+                    <label class="select-title" for="mName">你的名称</label>
+                    <input id="mName" class="select" name="mName" autocomplete="off" placeholder="请输入你的真实姓名"/>
+                </div>
+            <span id="underMemberName" class="errorMessage"></span>
+
+            <div  class="where">
+                    <label class="select-title" for="regName">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</label>
+                    <input id="regName" class="select" name="loginName" autocomplete="off" placeholder="设置你的账号"/>
+                </div>
+            <span id="underRegName" class="errorMessage"></span>
+
+            <div  class="where">
+                    <label class="select-title" for="regPassWord">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                    <input id="regPassWord" class="select" name="loginPassWord" type="password" autocomplete="off" placeholder="设置你的密码"/>
+                </div>
+            <span id="underRegPassWord" class="errorMessage"></span>
+
+            <div  class="where">
+                    <label class="select-title" for="regPassWordSure">确认密码</label>
+                    <input id="regPassWordSure" class="select" type="password" autocomplete="off" placeholder="再次输入你的密码"/>
+                </div>
+            <span id="underRegPassWordSure" class="errorMessage"></span>
+            <div class="bottom">
+                    <div class="buttonGroup">
+                        <button id="regB" class="ui-button" type="button">注册</button>
+                    </div>
+                    <a id="changeLogin">已有账号?<sub>点这里</sub></a>
+                </div>
+            <input id="regReset" type="reset" style="visibility: hidden"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

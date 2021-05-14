@@ -13,7 +13,7 @@
     <script src="../my/js/myjs.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function(){
-            floatComplete();
+            allComplete();
             //时间控件
             $(".time").datetimepicker({
                 language:  "zh-CN",
@@ -25,7 +25,26 @@
                 clearBtn : true,
                 pickerPosition: "bottom-left"
             });
-
+            var $deleteB=$("#deleteB");
+            $deleteB.unbind("click");//移除事件
+            $deleteB.click(function () {
+                if(confirm("你确定删除所选的数据吗?o((⊙﹏⊙))o")){
+                    var idArray=$(" tbody :checked");
+                    var json="{\"id\":[";
+                    for (var i=0;i<idArray.length;i++){
+                        var id=idArray[i].value;
+                        console.log(id);
+                        json+="\""+id+"\",";
+                        $("#"+id).remove();
+                    }
+                    json += "]}";
+                    json = json.replace(/,]}$/,"]}");
+                    var jsonData = JSON.parse(json);
+                    $.ajax({url:"memberdelete.do",contentType:"application/json",dataType:"json",type:"get",data:jsonData,success:function (data) {
+                        $("#pageSizeB").click();
+                        }})
+                }
+            })
         })
     </script>
 </head>
@@ -41,15 +60,15 @@
             <div style="position: relative;">
                 <div class="where">
                     <label class="select-title" for="appendName">名称<sup>*</sup></label>
-                    <input id="appendName" class="select" type="text" name="mName"/>
+                    <input id="appendName" class="select" type="text" name="mName" autocomplete="off"/>
                 </div>
                 <div class="where">
                     <label class="select-title" for="appendRegDate">入团时间<sup>*</sup></label>
-                    <input id="appendRegDate" class="select time form-control" type="text" name="regDate" />
+                    <input id="appendRegDate" class="select time form-control" type="text" name="regDate" autocomplete="off" />
                 </div>
                 <div class="where">
                     <label class="select-title" for="appendMWork">工作</label>
-                    <input id="appendMWork" class="select" type="text" name="mWork">
+                    <input id="appendMWork" class="select" type="text" name="mWork" autocomplete="off">
                 </div>
                 <div class="where">
                     <label class="select-title" for="appendGender">性别</label>
@@ -61,12 +80,13 @@
                 <div class="where">
                     <label class="select-title" for="appendCreator">准予者</label>
                     <select id="appendCreator" class="select" name="creator">
+                        <option></option>
                     </select>
                 </div>
                 <div class="where">
                     <label class="select-title" for="appendHead">领导<sup>*</sup></label>
                     <select id="appendHead" class="select" name="head">
-                        <option>lyb</option>
+                        <option >lyb</option>
                         <option>lyb</option>
                     </select>
                 </div>
@@ -106,15 +126,15 @@
             <div style="position: relative;">
                 <div class="where">
                     <label class="select-title" for="editName">名称<sup>*</sup></label>
-                    <input id="editName" class="select" type="text" name="mName"/>
+                    <input id="editName" class="select" type="text" name="mName" autocomplete="off"/>
                 </div>
                 <div class="where">
                     <label class="select-title" for="editRegDate">入团时间<sup>*</sup></label>
-                    <input id="editRegDate" class="select time form-control" type="text" name="regDate" />
+                    <input id="editRegDate" class="select time form-control" type="text" name="regDate"  autocomplete="off"/>
                 </div>
                 <div class="where">
                     <label class="select-title" for="editMWork">工作</label>
-                    <input id="editMWork" class="select" type="text" name="mWork">
+                    <input id="editMWork" class="select" type="text" name="mWork" autocomplete="off">
                 </div>
                 <div class="where">
                     <label class="select-title" for="editGender">性别</label>
@@ -175,13 +195,13 @@
                     <label class="select-title" for="selectMName">
                         姓名
                     </label>
-                    <input id="selectMName" class="select" type="text" name="mName"/>
+                    <input id="selectMName" class="select" type="text" name="mName" autocomplete="off"/>
                 </div>
                 <div class="where">
                     <label class="select-title" for="selectMWork">
                         工作
                     </label>
-                    <input id="selectMWork" class="select" type="text" name="mWork"/>
+                    <input id="selectMWork" class="select" type="text" name="mWork" autocomplete="off"/>
                 </div>
                 <div class="where">
                     <label class="select-title" for="selectHead">
@@ -195,7 +215,7 @@
                     <label class="select-title" for="selectRegDate">
                         入团时间
                     </label>
-                    <input id="selectRegDate" class="select time form-control" type="text" name="regDate" />
+                    <input id="selectRegDate" class="select time form-control" type="text" name="regDate"  autocomplete="off"/>
                 </div>
                 <div class="where">
                     <label class="select-title" for="selectGender">
@@ -248,7 +268,7 @@
                         <thead>
                         <tr>
                             <td>
-                                <div class="td" style="width: 44.2px !important;"><input type="checkbox"/></div>
+                                <div class="td" style="width: 44.2px !important;"><input type="checkbox" autocomplete="off"/></div>
                             </td>
                             <td>
                                 <div id="mName" class="td">姓名</div>
@@ -274,10 +294,10 @@
             </div>
             <div class="notFont">
                 <div class="buttonGroup under">
-                    <button id="count" type="button" class="under ui-button" value="条记录"></button>
-                </div>
+                <button id="count" type="button" class="under ui-button" value="条记录"></button>
+            </div>
                 <div class="buttonGroup under">
-                    <input id="pageSize" class="ui-button under" type="text" name="pageSize"/>
+                    <input id="pageSize" class="ui-button under" type="text" name="pageSize" autocomplete="off"/>
                     <button id="pageSizeB" class="ui-button under">条\页</button>
                 </div>
                 <!--此处需要js动态添加-->
@@ -285,8 +305,11 @@
 
                 </div>
                 <div class="buttonGroup under">
-                    <input id="pageNum" class="ui-button under" type="text" name="pageNum"/>
+                    <input id="pageNum" class="ui-button under" type="text" name="pageNum" autocomplete="off"/>
                     <button id="pageNumB" class="ui-button under">跳转至</button>
+                </div>
+                <div class="buttonGroup under">
+                    <button id="maxPage" type="button" class="under ui-button" value="条记录"></button>
                 </div>
             </div>
         </div>
